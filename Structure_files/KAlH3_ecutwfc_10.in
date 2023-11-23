@@ -1,0 +1,46 @@
+&CONTROL
+  calculation='scf',
+  outdir='.',
+  prefix='KAlH3',
+  pseudo_dir='.',
+  verbosity=2,
+  tprnfor=.true.,
+  tstress=.true.,
+/
+
+&SYSTEM
+  ibrav = 0
+  A =    3.98168
+  nat = 5
+  ntyp = 3
+  ecutwfc=10,
+  ecutrho=60,
+  input_dft='pbe',
+  occupations='smearing',
+  smearing='mv',
+  degauss=0.005d0,
+/
+
+&ELECTRONS
+  conv_thr=1d-08,
+  mixing_beta=0.7d0,
+/
+
+CELL_PARAMETERS {alat}
+  1.000000000000000   0.000000000000000   0.000000000000000
+  0.000000000000000   1.000000000000000   0.000000000000000
+  0.000000000000000   0.000000000000000   1.000000000000000
+ATOMIC_SPECIES
+   K   39.09830   K_PSEUDO
+   H    1.00750   H_PSEUDO
+  Al   26.98100  Al_PSEUDO
+ATOMIC_POSITIONS {crystal}
+ K   0.500000000000000   0.500000000000000   0.500000000000000
+ Al   0.000000000000000   0.000000000000000   0.000000000000000
+ H   0.000000000000000   0.000000000000000   0.500000000000000
+ H   0.000000000000000   0.500000000000000   0.000000000000000
+ H   0.500000000000000   0.000000000000000   0.000000000000000
+
+K_POINTS {automatic}
+ 7 7 7 0 0 0
+
