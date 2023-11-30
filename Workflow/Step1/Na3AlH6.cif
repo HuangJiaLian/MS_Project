@@ -1,0 +1,41 @@
+# generated using pymatgen
+data_Na3AlH6
+_symmetry_space_group_name_H-M   P2_1/c
+_cell_length_a   5.29339841
+_cell_length_b   5.49020829
+_cell_length_c   9.27931678
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   124.79911992
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   14
+_chemical_formula_structural   Na3AlH6
+_chemical_formula_sum   'Na6 Al2 H12'
+_cell_volume   221.44512303
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+  2  '-x, -y, -z'
+  3  '-x, y+1/2, -z+1/2'
+  4  'x, -y+1/2, z+1/2'
+loop_
+ _atom_type_symbol
+ _atom_type_oxidation_number
+  Na+  1.0
+  Al3+  3.0
+  H-  -1.0
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na+  Na0  4  0.26469332  0.54727702  0.25352601  1
+  Na+  Na1  2  0.50000000  0.00000000  0.50000000  1
+  Al3+  Al2  2  0.00000000  0.00000000  0.00000000  1
+  H-  H3  4  0.11723288  0.54770469  0.71674197  1
+  H-  H4  4  0.22428142  0.23276261  0.56298429  1
+  H-  H5  4  0.31540564  0.66971966  0.54344545  1

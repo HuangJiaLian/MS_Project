@@ -1,0 +1,44 @@
+# generated using pymatgen
+data_RbAlH4
+_symmetry_space_group_name_H-M   Pnma
+_cell_length_a   9.34242193
+_cell_length_b   5.81072084
+_cell_length_c   7.56194805
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   62
+_chemical_formula_structural   RbAlH4
+_chemical_formula_sum   'Rb4 Al4 H16'
+_cell_volume   410.50946813
+_cell_formula_units_Z   4
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+  2  '-x, -y, -z'
+  3  '-x+1/2, -y, z+1/2'
+  4  'x+1/2, y, -z+1/2'
+  5  'x+1/2, -y+1/2, -z+1/2'
+  6  '-x+1/2, y+1/2, z+1/2'
+  7  '-x, y+1/2, -z'
+  8  'x, -y+1/2, z'
+loop_
+ _atom_type_symbol
+ _atom_type_oxidation_number
+  Rb+  1.0
+  Al3+  3.0
+  H-  -1.0
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Rb+  Rb0  4  0.18130178  0.25000000  0.65967659  1
+  Al3+  Al1  4  0.06181135  0.25000000  0.18635094  1
+  H-  H2  8  0.08011611  0.02396883  0.31167597  1
+  H-  H3  4  0.09736847  0.75000000  0.89925627  1
+  H-  H4  4  0.18881832  0.25000000  0.04000790  1
