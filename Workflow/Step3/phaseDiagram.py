@@ -15,7 +15,7 @@ rbh_percent = [0, 33.33, 45.45, 60, 100]
 formation_energy = [0, -0.145593986, -0.067463493, -0.089290582, 0]
 H2_density = [0.03205, 0.01860, 0.02057, 0.01709, 0.00904]
 
-plt.figure(figsize=(8, 7))
+plt.figure(figsize=(8, 6))
 plt.subplot(2, 1, 1)
 plt.grid(True)
 plt.scatter(rbh_percent, formation_energy)
@@ -38,6 +38,7 @@ for i, crystal in enumerate(crystals):
 
 plt.tight_layout()
 plt.savefig('phasediaRbH.png')
+plt.savefig('phasediaRbH.pdf')
 plt.show()
 
 
