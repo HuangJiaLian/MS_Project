@@ -12,6 +12,7 @@ qe_out = sys.argv[1]
 frame = read(qe_out, index=-1, format='espresso-out')
 lattice = frame.get_cell().tolist()
 print(f'Lattice parameters:\n{lattice}')
+print(f'Formula: {frame.get_chemical_formula()}')
 
 total_atoms = len(frame)
 print('Number of total atoms: ', total_atoms)
