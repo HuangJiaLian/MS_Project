@@ -1,11 +1,10 @@
 #Quick tip; if the imports don't work, switch to the python interpreter to 3.11.4 (conda) and run the script from there.
-from pymatgen.core import Structure
-from pymatgen.io.pwscf import PWInput
-from ase.io import read
-from pymatgen.io.ase import AseAtomsAdaptor
 import pandas as pd
+from pymatgen.core import Structure
+from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.core.composition import Element, Composition
 from pymatgen.core.periodic_table import Specie
+from ase.io import read
 
 def weight_percentage(structure: Structure):
     """
@@ -47,6 +46,9 @@ def get_data(files: list):
             # Check if "CONTROL" is present in the content
             assert "CONTROL" in qe_input_content, f"The file {file} does not contain the keyword 'CONTROL', please give an input file that does have a control section."
             structure_ase = read(file)
+            structure = AseAtomsAdaptor.get_structure(structure_ase)
+        elif file.endswith(".out"):
+            structure_ase = read(file, index=-1, format='espresso-out')
             structure = AseAtomsAdaptor.get_structure(structure_ase)
         else:
             print(f"Unsupported file format: {file}")
@@ -94,7 +96,9 @@ def get_data(files: list):
     blankIndex=[''] * len(df)
     df.index=blankIndex
     print(df)
-
+    # print(df.to_latex())
+    
 # example:
-get_data(["Structure_files/KAlH3.cif","Structure_files/K3AlH6.cif",  "Structure_files/KAlH3_ecutwfc_10.in", "Structure_files/AlH3.cif"])
+get_data(["Structure_files/KAlH4_vcrelax.out", "Structure_files/K5Al3H14_vcrelax2.out",
+          "Structure_files/K3AlH6_vcrelax.out", "Structure_files/KH_vcrelax.out"])
 
