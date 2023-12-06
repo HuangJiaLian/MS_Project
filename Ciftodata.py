@@ -1,5 +1,6 @@
 #Quick tip; if the imports don't work, switch to the python interpreter to 3.11.4 (conda) and run the script from there.
 import pandas as pd
+import os
 from pymatgen.core import Structure
 from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.core.composition import Element, Composition
@@ -91,14 +92,23 @@ def get_data(files: list):
         data_list.append([file[16:], num_atoms, num_H_pairs_per_volume, wt, P_atm])
     # Create a pandas DataFrame
     columns = ["Crystal", "# Atoms", "H2 pairs per volume [Å⁻³]", "Weigth percentage [%]", "Pressure [atm]"]
-    df = pd.DataFrame(data_list, columns=columns, index=None)
+    df = pd.DataFrame(data_list, columns=columns)
+    df = df.sort_values(by="Crystal")
     # Fix indices (so they don't creep up)
     blankIndex=[''] * len(df)
     df.index=blankIndex
     print(df)
-    # print(df.to_latex())
-    
+    #print(df.to_latex())
+
+def process_all_files(folder_path):
+    # Get a list of all files with the .out extension in the specified folder
+    out_files = [f for f in os.listdir(folder_path) if f.endswith('.out')]
+
+    # Create the full path for each file
+    full_paths = [os.path.join(folder_path, f) for f in out_files]
+    print(full_paths)
+    return full_paths
+
 # example:
-get_data(["Structure_files/KAlH4_vcrelax.out", "Structure_files/K5Al3H14_vcrelax2.out",
-          "Structure_files/K3AlH6_vcrelax.out", "Structure_files/KH_vcrelax.out"])
+get_data(process_all_files('Structure_files'))
 
