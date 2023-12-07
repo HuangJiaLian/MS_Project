@@ -1,6 +1,7 @@
 #Quick tip; if the imports don't work, switch to the python interpreter to 3.11.4 (conda) and run the script from there.
 import pandas as pd
 import os
+import re
 from pymatgen.core import Structure
 from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.core.composition import Element, Composition
@@ -21,8 +22,18 @@ def weight_percentage(structure: Structure):
         if atom.specie.symbol == "H":
             Hmass += atom.specie.atomic_mass
             Number_of_hydrogen += 1
-    print(f'Found {Number_of_hydrogen} hydrogen atoms in the structure.')                
+    # print(f'Found {Number_of_hydrogen} hydrogen atoms in the structure.')                
     return Hmass/total_mass *100
+
+def get_chemical_formula(path):
+
+    file_name=path
+    # Define a regex pattern for extracting chemical formulas
+    pattern = re.compile(r'([A-Z][a-z]*\d*)+')
+
+    # Extract chemical formulas from each string
+    chemical_formula = pattern.search(file_name).group() if pattern.search(file_name) else None
+    return chemical_formula
 
 def get_data(files: list):
     """
@@ -55,9 +66,9 @@ def get_data(files: list):
             print(f"Unsupported file format: {file}")
             break
 
-        print(file)
+        # print(file)
         wt = weight_percentage(structure)
-        print(f"weight percentage: {weight_percentage(structure)}")
+        # print(f"weight percentage: {weight_percentage(structure)}")
         # Get the number of atoms
         num_atoms = len(structure)
         # print(f"Number of atoms: {num_atoms}")
@@ -88,8 +99,8 @@ def get_data(files: list):
         # pressure in atmospheres:
         P_atm = P * 9.86923e-6
         # print(f"Ideal gas pressure: {P_atm} atm")
-        # shorten filename to remove folder name
-        data_list.append([file[16:], num_atoms, num_H_pairs_per_volume, wt, P_atm])
+        # shorten filename to remove folder name and find chemical formula of crystal
+        data_list.append([get_chemical_formula(file[16:]), num_atoms, num_H_pairs_per_volume, wt, P_atm])
     # Create a pandas DataFrame
     columns = ["Crystal", "# Atoms", "H2 pairs per volume [Å⁻³]", "Weigth percentage [%]", "Pressure [atm]"]
     df = pd.DataFrame(data_list, columns=columns)
@@ -98,17 +109,29 @@ def get_data(files: list):
     blankIndex=[''] * len(df)
     df.index=blankIndex
     print(df)
-    #print(df.to_latex())
 
-def process_all_files(folder_path):
+    # Specify the file path for the CSV file
+    csv_file_path = 'data.csv'
+
+    # Save the DataFrame to a CSV file
+    df.to_csv(csv_file_path, index=False)
+
+    # Check if the file was created successfully
+    print(f'CSV file "{csv_file_path}" created successfully.')
+    
+    #print(df.to_latex()) # Does not wok properly, use csv instead
+
+
+
+def process_all_files(folder_path: str):
     # Get a list of all files with the .out extension in the specified folder
     out_files = [f for f in os.listdir(folder_path) if f.endswith('.out')]
 
     # Create the full path for each file
     full_paths = [os.path.join(folder_path, f) for f in out_files]
-    print(full_paths)
+    # print(full_paths)
     return full_paths
 
 # example:
-get_data(process_all_files('Structure_files'))
+get_data(process_all_files('Workflow/Step1/Structure_files'))
 
