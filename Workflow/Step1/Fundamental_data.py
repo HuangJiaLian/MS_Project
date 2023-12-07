@@ -49,6 +49,7 @@ def get_data(files: list):
     data_list = []
     for file in files:    
         # Load the CIF file
+        print(file)
         if file.endswith(".cif"):
             structure = Structure.from_file(file)
         elif file.endswith(".in"):
