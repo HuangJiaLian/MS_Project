@@ -134,5 +134,6 @@ def process_all_files(folder_path: str):
     return full_paths
 
 # example:
-get_data(process_all_files('Workflow/Step1/Structure_files'))
+#get_data(process_all_files('Workflow/Step1/Structure_files'))
+get_data(process_all_files('./Structure_files'))
 
