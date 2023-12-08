@@ -101,7 +101,7 @@ def get_data(files: list):
         P_atm = P * 9.86923e-6
         # print(f"Ideal gas pressure: {P_atm} atm")
         # shorten filename to remove folder name and find chemical formula of crystal
-        data_list.append([get_chemical_formula(file[16:]), num_atoms, num_H_pairs_per_volume, wt, P_atm])
+        data_list.append([get_chemical_formula(file[16:]), num_atoms, round(num_H_pairs_per_volume, 4), round(wt,2), round(P_atm)])
     # Create a pandas DataFrame
     columns = ["Crystal", "# Atoms", "H2 pairs per volume [Å⁻³]", "Weigth percentage [%]", "Pressure [atm]"]
     df = pd.DataFrame(data_list, columns=columns)
