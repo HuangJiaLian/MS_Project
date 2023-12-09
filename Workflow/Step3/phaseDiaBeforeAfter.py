@@ -27,7 +27,7 @@ plt.figure(figsize=(5.5, 3))
 plt.axhline(y=0, color='gray', linestyle=':', lw=0.5)
 plt.ylabel('E$_\mathrm{form}$ [eV/atom]', fontsize=18)
 plt.tick_params(labelbottom=False)
-plt.xlabel('')
+plt.xlabel('Atomic fraction of NaH [%]', fontsize=18)
 for i, X in enumerate(['Pre', 'Post']):
     #plt.subplot(5, 1, i+1)
     # Plot vertical lines at the percentage of 0, 33.33, 45.45, 60, 100
@@ -43,7 +43,7 @@ for i, X in enumerate(['Pre', 'Post']):
     plt.tick_params(direction='in', labelsize=12)
     plt.xlim(-15, 115)
     plt.ylim(-0.19, 0.06)
-    plt.xlabel('Atomic fraction of (X)H [%]', fontsize=18)
+    
 
     # (a) - (e)
     #plt.annotate(f'({chr(97+i)})', xy=(0.02, 0.8), xycoords="axes fraction", fontsize=16)
