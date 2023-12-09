@@ -7,6 +7,7 @@ from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.core.composition import Element, Composition
 from pymatgen.core.periodic_table import Specie
 from ase.io import read
+from ase.spacegroup import get_spacegroup
 
 def weight_percentage(structure: Structure):
     """
@@ -84,6 +85,8 @@ def get_data(files: list):
                 mass = atom.specie.atomic_mass
                 break
         
+        spacegroup = get_spacegroup(structure_ase).symbol
+        
         unit_cell_volume = structure.volume
         # print(f"Unit cell volume: {unit_cell_volume}")
         # Get number of hydrogen pairs per volume in Angstrom^-3:
@@ -101,9 +104,9 @@ def get_data(files: list):
         P_atm = P * 9.86923e-6
         # print(f"Ideal gas pressure: {P_atm} atm")
         # shorten filename to remove folder name and find chemical formula of crystal
-        data_list.append([get_chemical_formula(file[16:]), num_atoms, round(num_H_pairs_per_volume, 4), round(wt,2), round(P_atm)])
+        data_list.append([get_chemical_formula(file[16:]), num_atoms, spacegroup, num_H_pairs_per_volume, wt, P_atm])
     # Create a pandas DataFrame
-    columns = ["Crystal", "# Atoms", "H2 pairs per volume [Å⁻³]", "Weigth percentage [%]", "Pressure [atm]"]
+    columns = ["Crystal", "# Atoms", "Spacegroup", "H2 density [Å⁻³]", "Weigth percentage [%]", "Pressure [atm]"]
     df = pd.DataFrame(data_list, columns=columns)
     df = df.sort_values(by="Crystal")
     # Fix indices (so they don't creep up)
@@ -134,6 +137,7 @@ def process_all_files(folder_path: str):
     return full_paths
 
 # example:
-#get_data(process_all_files('Workflow/Step1/Structure_files'))
+# get_data(process_all_files('Workflow/Step1/Structure_files'))
+
 get_data(process_all_files('./Structure_files'))
 
