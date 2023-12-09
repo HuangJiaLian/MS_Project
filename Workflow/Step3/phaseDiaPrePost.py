@@ -26,7 +26,7 @@ plt.figure(figsize=(5.5, 3))
 # Plot line y = 0 
 plt.axhline(y=0, color='gray', linestyle=':', lw=0.5)
 plt.ylabel('E$_\mathrm{form}$ [eV/atom]', fontsize=18)
-plt.tick_params(labelbottom=False)
+# plt.tick_params(labelbottom=False)
 plt.xlabel('Atomic fraction of NaH [%]', fontsize=18)
 for i, X in enumerate(['Pre', 'Post']):
     #plt.subplot(5, 1, i+1)
@@ -42,7 +42,7 @@ for i, X in enumerate(['Pre', 'Post']):
     plt.scatter(atomic_fraction_of_XH, formation_energies[i], marker=markers[i], color='blue' if i == 0 else 'red', label=X)
     plt.tick_params(direction='in', labelsize=12)
     plt.xlim(-15, 115)
-    plt.ylim(-0.19, 0.06)
+    plt.ylim(-0.10, 0.06)
     
 
     # (a) - (e)
